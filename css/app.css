@@ -1,0 +1,59 @@
+.container {
+    width: 600px;
+    height: 500px;
+    margin: 20px auto;
+
+    font-size: 11px;
+    font-family: 'Helvetica Neue', Helvetica, Arial, sans-serif;
+    line-height: 13px;
+
+}
+
+.container label {
+    margin: 0;
+}
+
+.container .panel .panel-heading {
+    background-color: #45688E;
+    font-weight: bold;
+    color: #FFF;
+}
+
+.container .nav-pills > li.active > a, 
+.container .nav-pills > li.active > a:hover, 
+.container .nav-pills > li.active > a:focus {
+    background-color: #45688E;
+    color: #FFF;
+}
+
+.container .nav {
+    margin-bottom: 10px;
+}
+
+.friend {
+    border: 1px solid #CCC;
+    -webkit-border-radius: 8px;
+    -moz-border-radius: 8px;
+    border-radius: 8px;
+    background-color: #45688E;
+    float: left;
+
+    margin: 0 0 7px 7px;
+    padding: 4px 6px;
+    overflow: hidden;
+
+    width: 200px;
+}
+
+.panel {
+    width: 250px;
+}
+
+.friend .name {
+    font-size: 0.8em;
+    color: #FFF;
+}
+
+.friend input {
+    vertical-align: middle;
+}

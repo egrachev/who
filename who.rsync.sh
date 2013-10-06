@@ -1,0 +1,1 @@
+rsync -zavP ~/github/who.egrachev.com root@egrachev.com:/var/www/
