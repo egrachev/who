@@ -1,10 +1,11 @@
 <!doctype html>
-<html lang="en" ng-app="WhoApp">
+<html ng-app="WhoApp">
 <head>
     <meta charset="utf-8">
-    <title></title>
+    <title>Кто из нас?</title>
     <link rel="stylesheet" href="css/app.css"/>
     <link rel="stylesheet" href="lib/bootstrap/bootstrap.min.css"/>
+    <link rel="stylesheet" href="lib/jscrollpane/jquery.jscrollpane.css"/>
 
     <script src="lib/jquery.min.js"></script>
     <script src="lib/jquery-ui.min.js"></script>    
@@ -17,25 +18,99 @@
     <script src="js/services.js"></script>
     <script src="js/controllers/WhoController.js"></script>
 
+    <script src="lib/jscrollpane/jquery.mousewheel.js"></script>
+    <script src="lib/jscrollpane/jquery.jscrollpane.min.js"></script>
+    <script src="js/swfobject.js"></script>
+
+    <script>
+        $(function(){
+            // $('.panel').jScrollPane();
+
+            // var params = {
+            //     menu: "false",
+            //     scale: "Scale",
+            //     allowScriptAccess: "always",
+            //     bgcolor: "",
+            //     wmode: "opaque",
+            //     flashvars: "autostart=false",
+            //     play: "false"
+            // };
+            // var attributes = {
+            //     id: "preloader"
+            // };
+
+            // swfobject.embedSWF(
+            //     "img/hypnotoad.swf",
+            //     "hypnotoad", "200", "200", "10.0.0", null,
+            //     null, 
+            //     params, 
+            //     attributes
+            // );
+
+            // swfobject.getObjectById('hypnotoad').stopVideo();
+
+        });
+    </script>
+
+
+
 </head>
 <body>
 
     <div class="container" ng-controller="WhoController" ng-cloak>
 
-        <div class="panel panel-default">
-            <div class="panel-heading">Друзья онлайн</div>
-            <div class="panel-body">
-                <div class="friend" ng-repeat="friend in online_friends | orderBy:'name'">
-                    <label>
-                        <input type="checkbox" ng-model="friend.is_checked">
-                        <img src="{{friend.photo}}" width="25" height="25" class="img-rounded">
-                        <span class="name">{{friend.first_name}}</span>
-                        <span class="name">{{friend.last_name}}</span>
-                    </label>
+        <div class="panel panel-default panel-friends pull-left">
+            <div class="panel-heading">Друзья</div>
 
+            <div class="panel-body">
+                <div class="statistics">
+                    <span class="label label-default">Всех: {{friends.length}}</span>
+                    <span class="label label-info">Онлайн: {{friends_online.length}}</span>
+                    <span class="label label-success">Играют: {{friends_checked.length}}</span>
+                </div>
+
+                <div class="filter">
+                    <input type="search" ng-model="name" placeholder="Поиск" />
+                    <label>
+                        <span class="filter-title">Онлайн</span>
+                        <input type="checkbox" ng-model="online" ng-false-value="" />
+                    </label>
+                </div>
+
+                <div class="friend-list">
+                    <div class="friend" ng-repeat="friend in friends | orderBy:'name' | filter: {'online': online, 'name': name}">
+                        <label>
+                            <input type="checkbox" ng-model="friend.is_checked" ng-click="check_friend(friend)">
+                            <img src="{{friend.photo}}" width="25" height="25" class="img-rounded">
+                            <span class="name">{{friend.name}}</span>
+                        </label>
+                        <div class="online" ng-show="friend.online"></div>
+                    </div>
                 </div>
             </div>
         </div>
+        <div class="panel panel-default pull-right">
+            <div class="panel-heading">Играть</div>
+            <div class="panel-body">
+
+                <div class="winner">
+                    <button type="button button-play" class="btn btn-success" ng-click="play(friends)" ng-disabled="friends_checked.length < 2">
+                        <span class="glyphicon glyphicon-play"></span> Запустить
+                    </button>
+
+                    <div class="name">
+                        {{winner.name}}
+                    </div>
+
+                    <img src="{{winner.photo_big}}" class="img-rounded">
+
+                    <div id="hypnotoad-container">
+                        <div id="hypnotoad"></div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
 
     </div>
 

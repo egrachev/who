@@ -46,8 +46,47 @@
 }
 
 .panel {
-    width: 250px;
+    width: 270px;
 }
+
+.friend-list {
+    height: 320px;
+    overflow-y: scroll;    
+}
+
+.filter, .statistics {
+    margin: 0 0 15px 7px;
+}
+
+.filter .filter-title {
+    font-weight: normal;
+}
+
+.filter input[type=checkbox] {
+    vertical-align: bottom;
+}
+
+
+.online {
+    display: inline-block;
+    float: right;
+    background: url(http://st0.vk.me/images/icons/rbox_full2.png?3) 0 -49px no-repeat;
+    width: 11px;
+    height: 11px;
+    margin-top: 9px;
+}
+
+.winner {
+    text-align: center;
+}
+
+.winner .name {
+    margin: 10px 0;
+    font-size: 14px;
+    font-weight: bold;
+    color: #45688E;
+}
+
 
 .friend .name {
     font-size: 0.8em;
